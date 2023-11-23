@@ -11,7 +11,7 @@ router.post("/register", async (req, res) => {
 	if (await UserModel.findOne({ email })) {
 		return res.status(400).json({
 			error: true,
-			message: "Email já cadastrado",
+			message: "Email já existente",
 		});
 	}
 
@@ -30,7 +30,7 @@ router.post("/authenticate", async (req, res) => {
 	if (!user) {
 		return res.status(400).json({
 			error: true,
-			message: "User não encontrado",
+			message: "Usuário e/ou senha inválidos",
 		});
 	}
 
@@ -39,7 +39,7 @@ router.post("/authenticate", async (req, res) => {
 	if (!senhaCheck) {
 		return res.status(400).json({
 			error: true,
-			message: "Senha incorreta",
+			message: "Usuário e/ou senha inválidos",
 		});
 	}
 

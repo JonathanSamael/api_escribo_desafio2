@@ -18,7 +18,7 @@ function middlewareAuthenticate(req, res, next) {
 	if(scheme.indexOf("Bearer") !== 0) {
 		return res.status(401).json({
 			error: true,
-			message: "Token inválido, verifique o formato"
+			message: "Não autorizado"
 		});
 	}
 
@@ -27,7 +27,7 @@ function middlewareAuthenticate(req, res, next) {
 			console.log(error);
 			return res.status(401).json({
 				error: true,
-				message: "Token inválido ou expirado"
+				message: "Sessão inválida"
 			});
 		}
 

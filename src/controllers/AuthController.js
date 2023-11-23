@@ -36,16 +36,15 @@ router.post("/authenticate", async (req, res) => {
 		});
 	}
     
-	const senhaCorreta = await bcrypt.compare(senha, user.senha);
+	const senhaCheck = await bcrypt.compare(senha, user.senha);
 
-	if(!senhaCorreta) {
+	if(!senhaCheck) {
 		return res.status(400).json({
 			error: true,
 			message: "Senha incorreta"
 		});
 	}
 
-	console.log(user);
 	user.senha = undefined;
 
 	return res.json(user);
